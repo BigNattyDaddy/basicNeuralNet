@@ -18,7 +18,7 @@ class network:
         self.loss = []
 
 
-        self.lr =0.0000005
+        self.lr =0.005
         self.sam = self.X.size
 
 
@@ -67,7 +67,7 @@ class network:
 
     def backpass(self, e, ex):
 
-        dLoss_Yh = -(np.divide(ex, self.Yh)-np.divide(1-ex, 1-self.Yh))
+        dLoss_Yh = -(ex-self.Yh)
 
         dLoss_z2 = dLoss_Yh * dSigmoid(self.ch['z2'])
 
@@ -126,7 +126,7 @@ def dSigmoid(Z):
 
 
 x = np.arange(1,11,0.1)
-y = -2**x
+y = 2**-x
 
 
 nn = network(x, y)
